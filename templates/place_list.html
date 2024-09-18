@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Places List</title>
+</head>
+<body>
+    <h1>Places</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Map</th>
+            <th>Image</th>
+            <th>Location</th>
+            <th>Sockets</th>
+            <th>Toilet</th>
+            <th>Wi-Fi</th>
+            <th>Calls</th>
+            <th>Seats</th>
+            <th>Coffee Price</th>
+        </tr>
+        {% for place in places %}
+        <tr>
+            <td>{{ place.name }}</td>
+            <td><a href="{{ place.map_url }}">Map</a></td>
+            <td><img src="{{ place.img_url }}" alt="{{ place.name }}" width="100"></td>
+            <td>{{ place.location }}</td>
+            <td>{{ place.has_sockets|yesno:"Yes,No" }}</td>
+            <td>{{ place.has_toilet|yesno:"Yes,No" }}</td>
+            <td>{{ place.has_wifi|yesno:"Yes,No" }}</td>
+            <td>{{ place.can_take_calls|yesno:"Yes,No" }}</td>
+            <td>{{ place.seats }}</td>
+            <td>{{ place.coffee_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

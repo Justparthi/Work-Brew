@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Place</title>
+</head>
+<body>
+    <h1>Add a New Place</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Automatically renders the form fields -->
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
