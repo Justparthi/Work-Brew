@@ -20,6 +20,8 @@ from cutlet import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.place_list),
-    path('add/', views.add_place)
+    path('', views.home),
+    path('cafe/', views.place_list),
+    path('add/', views.add_place),
+    path('place/<int:id>/', views.get, name='place_detail'),
 ]

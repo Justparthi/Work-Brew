@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ place.name }} - Details</title>
+</head>
+<body>
+
+    <!-- Display the id of the place -->
+    <p><strong>ID:</strong> {{ place.id }}</p>
+
+    <!-- Display the name of the place -->
+    <h1>{{ place.name }}</h1>
+
+    <!-- Display the location of the place -->
+    <p><strong>Location:</strong> {{ place.location }}</p>
+
+    <!-- Display the image of the place -->
+    <img src="{{ place.img_url }}" alt="{{ place.name }}" style="max-width: 400px;">
+
+    <!-- Link to view the place on the map -->
+    <p><a href="{{ place.map_url }}" target="_blank">View on Map</a></p>
+
+</body>
+</html>
