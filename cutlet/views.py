@@ -34,7 +34,7 @@ def add_place(request):
         form = PlaceForm(request.POST)
         if form.is_valid():
             form.save()  # Saves the data to the database
-            return redirect('home')  # Redirect to the home page after saving
+            return redirect('/cafe')  # Redirect to the home page after saving
     else:
         form = PlaceForm()
 

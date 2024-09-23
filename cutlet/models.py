@@ -19,16 +19,8 @@ class Place(models.Model):
     coffee = models.CharField(max_length=100)
     food = models.CharField(max_length=100)
     veggie = models.CharField(max_length=100)
-    alcohol = models.CharField(max_length=100)
     payment = models.CharField(max_length=100)
-    light = models.CharField(max_length=100)
-    outdoor = models.CharField(max_length=100)
-    spacious = models.CharField(max_length=100)
+    
     restroom = models.CharField(max_length=100)
-    air = models.CharField(max_length=100)
-    smoke_free = models.CharField(max_length=100)
-    pet = models.CharField(max_length=100)
-    parking = models.CharField(max_length=100)
-    rating = models.CharField(max_length=100)
     def __str__(self):
         return self.name
