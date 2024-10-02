@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+.cafe-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cafe-item {
+    flex: 1 1 300px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.cafe-item img {
+    float: left;
+    width: 150px;
+    margin-right: 20px;
+}
+
+.cafe-info {
+    margin-left: 150px;
+}
+
+footer {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
