@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -76,16 +77,21 @@ WSGI_APPLICATION = 'coffee.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Cafe',
+#         'USER': 'postgres',
+#         'PASSWORD': 'parthi',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Cafe',
-        'USER': 'postgres',
-        'PASSWORD': 'parthi',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    "default" : dj_database_url.parse("postgresql://cafedb_fcut_user:8uf0nRzHSgtG0KzGnVccm7BJURobwsWD@dpg-cruv3kdds78s73a5bl90-a.oregon-postgres.render.com/cafedb_fcut")
 }
+
 
 
 # Password validation
@@ -124,6 +130,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+MEDIA_URL = 'media/'
 
 
 # Default primary key field type

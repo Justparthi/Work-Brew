@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from cutlet import views
+# from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,3 +26,5 @@ urlpatterns = [
     path('add/', views.add_place),
     path('place/<int:id>/', views.get, name='place_detail'),
 ]
+
+# urlpatterns += staticfiles_urlpatterns
