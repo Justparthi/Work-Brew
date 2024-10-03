@@ -3,8 +3,8 @@ from .models import Place
 from .forms import PlaceForm
 import smtplib
 
-email = "Mail"
-key = "Key"
+email = "pywork69@gmail.com"
+key = "iuuwhrajukmcezdi"
 
 def home(request):
     if request.method == 'POST':
