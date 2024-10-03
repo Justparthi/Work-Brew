@@ -11101,6 +11101,7 @@ header.masthead h1, header.masthead .h1 {
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-6">
                         <form id="contactForm" method="POST">
+                            {% csrf_token %}
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." required />
                                 <label for="name">Full name</label>
