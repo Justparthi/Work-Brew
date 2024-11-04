@@ -15,7 +15,7 @@
 - **Frontend**: HTML, CSS, JavaScript
 - **Authentication**: Django built-in authentication system
 - **Database**: PostgreSQL
-- **Deployment**: TBD (e.g., Heroku, AWS, or your preferred hosting platform)
+- **Deployment**: Aiven, Render
 
 ## 🚀 Getting Started
 
