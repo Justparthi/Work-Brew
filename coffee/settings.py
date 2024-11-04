@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'coffee.wsgi.application'
 # }
 
 DATABASES = {
-    "default" : dj_database_url.parse("postgresql://cafedb_fcut_user:8uf0nRzHSgtG0KzGnVccm7BJURobwsWD@dpg-cruv3kdds78s73a5bl90-a.oregon-postgres.render.com/cafedb_fcut")
+    "default" : dj_database_url.parse("postgres://avnadmin:AVNS_XsVLATGnk82x1HMCHwD@pg-3c5b44c6-parthibanpavendhan-e181.h.aivencloud.com:21337/defaultdb?sslmode=require")
 }
 
 
