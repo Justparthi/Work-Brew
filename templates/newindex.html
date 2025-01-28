@@ -314,6 +314,163 @@
   font-size: var(--text-sm);
   font-weight: 600;
     }
+
+    .features {
+      background: var(--light);
+      padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--accent) 0,
+        var(--accent) 1px,
+        transparent 1px,
+        transparent 20px
+      );
+      opacity: 0.03;
+      z-index: 1;
+    }
+
+    .features-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .features-title {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      color: var(--primary);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .features-subtitle {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text);
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: clamp(2rem, 4vw, 3rem);
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: clamp(2rem, 4vw, 3rem);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--light);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      color: var(--accent);
+      position: relative;
+    }
+
+    .feature-icon::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 15px;
+      opacity: 0.1;
+      transform: rotate(-10deg);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon::after {
+      transform: rotate(0deg);
+    }
+
+    .feature-title {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      color: var(--primary);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .feature-description {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-link {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      transition: gap 0.3s ease;
+    }
+
+    .feature-link:hover {
+      gap: 0.8rem;
+    }
+
+    .feature-link::after {
+      content: '→';
+      transition: transform 0.3s ease;
+    }
+
+    .feature-link:hover::after {
+      transform: translateX(5px);
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        padding: 4rem 1rem;
+      }
+      
+      .feature-card {
+        padding: 2rem;
+      }
+    }
 /* Quote Section Layout */
 .quote-section {
   min-height: 80vh;
@@ -462,6 +619,275 @@
   opacity: 0.8;
 }
 
+.reviews {
+      background: var(--light);
+      padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem);
+      position: relative;
+    }
+
+    .reviews-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+      position: relative;
+    }
+
+    .reviews-title {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      color: var(--primary);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .reviews-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .reviews-subtitle {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text);
+      max-width: 600px;
+      margin: 2rem auto 0;
+    }
+
+    .reviews-showcase {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .featured-review {
+      background: white;
+      border-radius: 30px;
+      padding: clamp(2rem, 4vw, 3rem);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .featured-review::before {
+      content: '★★★★★';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      font-size: 8rem;
+      color: var(--accent);
+      opacity: 0.05;
+      transform: rotate(15deg);
+    }
+
+    .featured-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .featured-quote {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--primary);
+      line-height: 1.4;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    .featured-author {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .author-avatar {
+      width: 70px;
+      height: 70px;
+      border: 3px solid var(--accent);
+      border-radius: 20px;
+      transform: rotate(-5deg);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .author-avatar:hover {
+      transform: rotate(0deg);
+    }
+
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .author-info {
+      flex: 1;
+    }
+
+    .author-name {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .author-meta {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--text);
+    }
+
+    .review-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .stat-card:hover {
+      transform: translateX(10px);
+    }
+
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--light);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .stat-info {
+      flex: 1;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--text);
+    }
+
+    .review-carousel {
+      overflow: hidden;
+      position: relative;
+      padding: 1rem 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 2rem;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-card {
+      flex: 0 0 300px;
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .review-rating {
+      color: var(--accent);
+      font-size: var(--text-sm);
+      margin-bottom: 1rem;
+    }
+
+    .review-text {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .cafe-preview {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .cafe-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .cafe-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cafe-info h4 {
+      font-family: var(--font-display);
+      font-size: var(--text-sm);
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .cafe-location {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      color: var(--text);
+    }
+
+    @media (max-width: 1024px) {
+      .reviews-showcase {
+        grid-template-columns: 1fr;
+      }
+      
+      .review-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .carousel-track {
+        padding: 1rem;
+      }
+      
+      .featured-quote {
+        font-size: var(--text-lg);
+      }
+    }
+
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .quote-section {
@@ -515,6 +941,215 @@
     display: none;
   }
 }
+
+.contact-section {
+          
+          border-radius: 50px 50px 0 0;
+            min-height: 100vh;
+            background: #2A1810;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .contact-container {
+            width: 100%;
+            max-width: 1200px;
+            background: #FFF8F3;
+            border-radius: 40px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 4rem;
+            position: relative;
+        }
+
+        .side-panel {
+            position: relative;
+            padding-top: 2rem;
+        }
+
+        .side-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: #D4A574;
+        }
+
+        .contact-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2A1810;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .contact-header p {
+            font-family: 'Lora', serif;
+            color: #4A4A4A;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            align-content: start;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 1rem;
+            top: 1.2rem;
+            font-family: 'Lora', serif;
+            color: #4A4A4A;
+            transition: all 0.3s ease;
+            background: #FFF8F3;
+            padding: 0 0.5rem;
+        }
+
+        .form-group input:focus ~ label,
+        .form-group textarea:focus ~ label,
+        .form-group input:not(:placeholder-shown) ~ label,
+        .form-group textarea:not(:placeholder-shown) ~ label {
+            top: -0.5rem;
+            left: 0.8rem;
+            font-size: 0.8rem;
+            color: #D4A574;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid #D4A574;
+            border-radius: 12px;
+            background: transparent;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            color: #2A1810;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: transparent;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2A1810;
+            box-shadow: 0 4px 12px rgba(42, 24, 16, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            grid-column: 1 / -1;
+            background: #D4A574;
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            border-radius: 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #2A1810;
+            padding-right: 3rem;
+        }
+
+        .submit-button:hover::after {
+            right: 1.5rem;
+            opacity: 1;
+        }
+
+        .decorative-circles {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 2px solid #D4A574;
+            opacity: 0.1;
+            right: -150px;
+            bottom: -150px;
+        }
+
+        .decorative-circles::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid #2A1810;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-section {
+                padding: 1rem;
+            }
+
+            .contact-header h2 {
+                font-size: 2rem;
+            }
+        }
+
     @media (max-width: 768px) {
       .nav-links {
         position: fixed;
@@ -633,7 +1268,7 @@
         <div class="nav-container">
             <a href="#" class="logo">
                 <div class="logo-icon">☕</div>
-                <span class="logo-text">CaféFind</span>
+                <span class="logo-text">𝒲𝑜𝓇𝓀𝐵𝓇𝑒𝓌</span>
             </a>
             
             <button class="mobile-menu-btn">
@@ -642,10 +1277,10 @@
 
             <div class="nav-links">
                 <a href="#" class="nav-link active">Home</a>
-                <a href="#" class="nav-link">Discover</a>
+                <a href="/cafe" class="nav-link">Discover</a>
                 <a href="#" class="nav-link">Reviews</a>
                 <a href="#" class="nav-link">About</a>
-                <a href="#" class="cta-button">Share a Café</a>
+                <a href="/add" class="cta-button">Share a Café</a>
             </div>
         </div>
     </nav>
@@ -655,18 +1290,18 @@
             <div class="hero-text">
                 <h1 class="hero-title">Discover Your Perfect Coffee Haven</h1>
                 <p class="hero-subtitle">Explore curated cafe recommendations tailored to your taste. From cozy corners to bustling coffee houses, find your next favorite spot.</p>
-                <a href="#explore" class="cta-button">Explore Cafes</a>
+                <a href="/cafe" class="cta-button">Explore Cafes</a>
             </div>
             <div class="hero-image">
                 <div class="floating-cards">
                     <div class="cafe-card card-1">
-                        <div class="card-image"></div>
+                        <img src="https://b.zmtcdn.com/data/pictures/7/19645277/ab1666cc42e64e94142c5681f452f792.jpg?output-format=webp&fit=around|771.75:416.25&crop=771.75:416.25;*,*" class="card-image"></img>
                         <h3 class="card-title">Rustic Coffee Co.</h3>
                         <p class="card-text">A charming cafe known for its artisanal roasts and homemade pastries.</p>
                         <div class="rating">★★★★★ 4.8</div>
                     </div>
                     <div class="cafe-card card-2">
-                        <div class="card-image"></div>
+                        <img src="https://b.zmtcdn.com/data/pictures/2/20450942/84688047827627763919faeafd41ded4.jpg?output-format=webp&fit=around|300:273&crop=300:273;*,*" class="card-image"></img>
                         <h3 class="card-title">The Daily Grind</h3>
                         <p class="card-text">Modern workspace meets specialty coffee in this urban retreat.</p>
                         <div class="rating">★★★★½ 4.6</div>
@@ -697,6 +1332,181 @@
     </div>
   </section>
 
+  <section class="features">
+  <div class="features-container">
+    <div class="features-header">
+      <h2 class="features-title">Why Choose 𝒲𝑜𝓇𝓀𝐵𝓇𝑒𝓌?</h2>
+      <p class="features-subtitle">Discover the perfect café experience with our curated recommendations and innovative features designed to enhance your coffee journey.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3 class="feature-title">Personalized Recommendations</h3>
+        <p class="feature-description">Get tailored café suggestions based on your preferences, from ambiance to coffee type, ensuring your perfect match.</p>
+        <a href="#" class="feature-link">Learn more</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3 class="feature-title">Smart Location Finder</h3>
+        <p class="feature-description">Find the nearest cafés that match your criteria, complete with walking directions and peak hours information.</p>
+        <a href="#" class="feature-link">Explore nearby</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h3 class="feature-title">Authentic Reviews</h3>
+        <p class="feature-description">Read genuine reviews from coffee enthusiasts, complete with photos and detailed experiences.</p>
+        <a href="#" class="feature-link">Read reviews</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3 class="feature-title">Mobile Ordering</h3>
+        <p class="feature-description">Skip the queue by ordering ahead at participating cafés, with exclusive app-only discounts.</p>
+        <a href="#" class="feature-link">Start ordering</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="reviews">
+
+<div class="reviews-container">
+  <div class="reviews-header">
+    <h2 class="reviews-title">Coffee Community Stories</h2>
+    <p class="reviews-subtitle">Join thousands of coffee enthusiasts sharing their favorite café discoveries and experiences</p>
+  </div>
+
+  <div class="reviews-showcase">
+    <div class="featured-review">
+      <div class="featured-content">
+        <p class="featured-quote">"This app transformed my morning routine! Found an incredible local roastery that I never knew existed. Their pour-over is absolutely life-changing."</p>
+        <div class="featured-author">
+          <div class="author-avatar">
+            <img src="https://imgs.search.brave.com/zU2HDKHnfCOyEqDdkUiUagHxIwCpTpulpRQtR5jSgg0/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzZkLzY3/LzczLzZkNjc3M2Uy/MjRmMTNjN2ZmYzMz/YmUxN2JhNzU5MDUz/LmpwZw" alt="Michael Chen">
+          </div>
+          <div class="author-info">
+            <h3 class="author-name">Michael Chen</h3>
+            <p class="author-meta">Coffee Enthusiast • 42 Reviews</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-stats">
+      <div class="stat-card">
+        <div class="stat-icon">☕</div>
+        <div class="stat-info">
+          <div class="stat-value">15,000+</div>
+          <div class="stat-label">Cafés Discovered</div>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-info">
+          <div class="stat-value">98%</div>
+          <div class="stat-label">Positive Reviews</div>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-info">
+          <div class="stat-value">50k+</div>
+          <div class="stat-label">Active Users</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="review-carousel">
+    <div class="carousel-track">
+      <!-- Carousel Card 1 -->
+      <div class="carousel-card">
+        <div class="review-rating">★★★★★</div>
+        <p class="review-text">Perfect spot for remote work! Fast WiFi, plenty of outlets, and the most amazing almond croissants.</p>
+        <div class="cafe-preview">
+          <div class="cafe-image">
+            <img src="https://imgs.search.brave.com/8vFLa9MNeddsl2vhQDq46MKm9QR88G0xJBsTGuIr1nQ/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9nZW5l/YWNkbi5uZXQvYnVu/ZGxlcy9nZW5lYW5l/dGdlbmVhc3Rhci9p/bWFnZXMvY2VsZWJy/aXRlcy8yMDBweC9s/YWNvbWJlc2FpbnRt/aWNoZWxqLmpwZw" alt="Cafe Artisan">
+          </div>
+          <div class="cafe-info">
+            <h4>Cafe Artisan</h4>
+            <p class="cafe-location">Downtown • Seattle</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Card 2 -->
+      <div class="carousel-card">
+        <div class="review-rating">★★★★½</div>
+        <p class="review-text">Hidden gem with the best cold brew I've ever had. The barista's latte art is Instagram-worthy!</p>
+        <div class="cafe-preview">
+          <div class="cafe-image">
+            <img src="https://imgs.search.brave.com/l_Ghge1aPbSYz7raOFT6CrgKmBrm7S-xRjXZSDOD8VU/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9nZW5l/YWNkbi5uZXQvYnVu/ZGxlcy9nZW5lYW5l/dGdlbmVhc3Rhci9p/bWFnZXMvY2VsZWJy/aXRlcy8yMDBweC9t/aWNoZWxqZWFuLmpw/Zw" alt="Brew & Co">
+          </div>
+          <div class="cafe-info">
+            <h4>Brew & Co</h4>
+            <p class="cafe-location">Hayes Valley • SF</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Card 3 -->
+      <div class="carousel-card">
+        <div class="review-rating">★★★★★</div>
+        <p class="review-text">Such a cozy atmosphere! Their seasonal drinks menu is creative and the pastries are homemade.</p>
+        <div class="cafe-preview">
+          <div class="cafe-image">
+            <img src="https://imgs.search.brave.com/PGxkZ_EXlaiKOU27_Mnkbylaod0zHFQyRdiHzgJICuU/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9oaXBz/LmhlYXJzdGFwcHMu/Y29tL2htZy1wcm9k/L2ltYWdlcy9wb3J0/cmFpdC1vZi1uaWNv/bGF1cy1jb3Blcm5p/Y3VzLW5ld3MtcGhv/dG8tMTY5NDU0MTM0/NC5qcGc_Y3JvcD0x/LjAweHc6MC45ODF4/aDswLDAuMDE5MHho/JnJlc2l6ZT05ODA6/Kg" alt="The Daily Grind">
+          </div>
+          <div class="cafe-info">
+            <h4>The Daily Grind</h4>
+            <p class="cafe-location">Brooklyn • NYC</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+ <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-grid">
+                <div class="side-panel">
+                    <div class="contact-header">
+                        <h2>Let's Get In Touch!</h2>
+                        <p>Ready to start your next project with us? Send us a message and we will get back to you as soon as possible!</p>
+                    </div>
+                </div>
+                
+                <form class="form-container">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="fullname" name="fullname" placeholder="Full name" required>
+                        <label for="fullname">Full name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email address" required>
+                        <label for="email">Email address</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Phone number" required>
+                        <label for="phone">Phone number</label>
+                    </div>
+                    <div class="form-group full-width">
+                        <textarea id="message" name="message" placeholder="Message" required></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+            <div class="decorative-circles"></div>
+        </div>
+    </section>
   <script>
     document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
       this.classList.toggle('active');
