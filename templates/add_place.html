@@ -7,131 +7,607 @@
     <title>Add Place</title>
     <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --primary: #2A1810;
+    --accent: #D4A574;
+    --light: #FFF8F3;
+    --text: #4A4A4A;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Lora', serif;
+    --text-xs: clamp(0.75rem, 1.5vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 2vw, 1rem);
+    --text-base: clamp(1rem, 2.5vw, 1.125rem);
+    --text-lg: clamp(1.25rem, 3vw, 1.5rem);
+    --text-xl: clamp(1.5rem, 4vw, 2rem);
+    --text-2xl: clamp(2rem, 5vw, 2.5rem);
+    --text-3xl: clamp(2.5rem, 6vw, 3rem);
+    --text-4xl: clamp(3rem, 8vw, 4rem);
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--text);
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background: rgba(255, 248, 243, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+}
+
+.nav-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    z-index: 1001;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--light);
+    transform: rotate(-10deg);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(0deg);
+}
+
+.logo-text {
+    font-weight: 700;
+    color: var(--primary);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+}
+
+.nav-links {
+    display: flex;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    font-size: var(--text-sm);
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--accent);
+}
+
+.cta-button {
+    background: var(--accent);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+    font-size: var(--text-sm);
+    white-space: nowrap;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    color: white;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 2px;
+    background: var(--primary);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.menu-icon::before {
+    top: -6px;
+}
+
+.menu-icon::after {
+    bottom: -6px;
+}
+
+.mobile-menu-btn.active .menu-icon {
+    background: transparent;
+}
+
+.mobile-menu-btn.active .menu-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.mobile-menu-btn.active .menu-icon::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+@media (max-width: 991px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        background: rgba(255, 248, 243, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-link {
+        font-size: var(--text-lg);
+    }
+
+    .cta-button {
+        margin-top: 1rem;
+    }
+}
+
+.card {
+    transition: transform 0.3s ease;
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    margin-bottom: 0.5rem;
+}
+
+.card-footer {
+    padding: 1rem 1.5rem;
+}
+
+.container {
+    padding-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-top: 1rem;
+    }
+    
+    h1 {
+        font-size: var(--text-2xl);
+        margin-bottom: 2rem;
+    }
+    
+    .card-img-top {
+        height: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-text {
+        font-size: var(--text-base);
+    }
+    
+    .logo-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+    
+    .card-img-top {
+        height: 160px;
+    }
+}
+.form-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .form-title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .form-subtitle {
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            color: var(--text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(42, 24, 16, 0.05);
+            border: 1px solid rgba(212, 165, 116, 0.1);
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .form-label {
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            border: 2px solid rgba(42, 24, 16, 0.1);
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            font-size: var(--text-sm);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            font-size: var(--text-base);
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .form-icon {
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        .help-text {
+            font-size: var(--text-xs);
+            color: var(--text);
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .form-card {
+                padding: 1.5rem;
+            }
+
+            .form-section {
+                margin-bottom: 2rem;
+            }
+
+            .section-title {
+                font-size: var(--text-base);
+            }
+        }
+
+        /* Progress indicator styles */
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            margin: 0 1rem;
+            color: var(--text);
+            font-size: var(--text-sm);
+        }
+
+        .step-number {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: var(--light);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .current-step .step-number {
+            background: var(--accent);
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-            <span class="fs-4">WorkBrew</span>
-          </a>
-    
-          <ul class="nav nav-">
-            <li class="nav-item"><a href="/add" style="background-color: rgb(244, 98, 58); color: white; border-radius: 10px;" class="nav-link active" aria-current="page">Add Cafe</a></li>
-          </ul>
-        </header>
-      </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">☕</div>
+                <span class="logo-text">𝒲𝑜𝓇𝓀𝐵𝓇𝑒𝓌</span>
+            </a>
+            
+            <button class="mobile-menu-btn">
+                <div class="menu-icon"></div>
+            </button>
 
-    <div class="container my-5">
-        <div class="position-relative p-5 text text-muted bg-body border border-dashed rounded-5">
-            <h1>Add a New Place</h1>
-            <div class="card-body p-4">
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="row g-3">
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="/cafe" class="nav-link">Discover</a>
+                <a href="#" class="nav-link">Reviews</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="/add" class="cta-button">Share a Café</a>
+            </div>
+        </div>
+    </nav>
+    <div class="form-container">
+        <div class="form-header">
+            <h1 class="form-title">Share Your Favorite Workspace</h1>
+            <p class="form-subtitle">Help others discover great places to work by sharing your favorite café</p>
+        </div>
+
+        <div class="form-card">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-section">
+                    <h2 class="section-title"><i class="fas fa-info-circle form-icon"></i>Basic Information</h2>
+                    <div class="row g-4">
                         <div class="col-md-6">
-                            <label for="name" class="form-label">Place Name</label>
+                            <label class="form-label">Place Name</label>
                             {{ form.name|add_class:"form-control" }}
+                            <div class="help-text">Enter the official name of the café</div>
                         </div>
                         <div class="col-md-6">
-                            <label for="map_url" class="form-label">Map URL</label>
-                            {{ form.map_url|add_class:"form-control" }}
-                        </div>
-                        <div class="col-md-6">
-                            <label for="img_url" class="form-label">Image URL</label>
-                            {{ form.img_url|add_class:"form-control" }}
-                        </div>
-                        <div class="col-md-6">
-                            <label for="location" class="form-label">Location</label>
+                            <label class="form-label">Location</label>
                             {{ form.location|add_class:"form-control" }}
+                            <div class="help-text">Full address of the café</div>
                         </div>
-                        <div class="col-md-4">
-                            <label for="seats" class="form-label">Number of Seats | eg : 0 - 100</label>
-                            {{ form.seats|add_class:"form-control" }}
+                        <div class="col-md-6">
+                            <label class="form-label">Map URL</label>
+                            {{ form.map_url|add_class:"form-control" }}
+                            <div class="help-text">Google Maps or similar link</div>
                         </div>
-                        <div class="col-md-4">
-                            <label for="coffee_price" class="form-label">Coffee Price | eg : 0 - 100</label>
-                            {{ form.coffee_price|add_class:"form-control" }}
-                        </div>
-                        <div class="col-md-4">
-                            <label for="stable_wifi" class="form-label">Stable Wifi | eg : 0 - 100</label>
-                            {{ form.stable_wifi|add_class:"form-control" }}
+                        <div class="col-md-6">
+                            <label class="form-label">Image URL</label>
+                            {{ form.img_url|add_class:"form-control" }}
+                            <div class="help-text">Link to a photo of the café</div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="row g-3 mt-3">
+                <div class="form-section">
+                    <h2 class="section-title"><i class="fas fa-wifi form-icon"></i>Amenities</h2>
+                    <div class="row g-4">
                         <div class="col-md-3">
-                            <label for="has_sockets" class="form-label">Has Sockets | eg : Yes/No</label>
+                            <label class="form-label">Has Sockets</label>
                             {{ form.has_sockets|add_class:"form-control" }}
                         </div>
                         <div class="col-md-3">
-                            <label for="has_toilet" class="form-label">Has Toilet | eg : Yes/No</label>
+                            <label class="form-label">Has Toilet</label>
                             {{ form.has_toilet|add_class:"form-control" }}
                         </div>
                         <div class="col-md-3">
-                            <label for="has_wifi" class="form-label">Has Wifi | eg : Available/Not-Available</label>
+                            <label class="form-label">Has Wifi</label>
                             {{ form.has_wifi|add_class:"form-control" }}
                         </div>
                         <div class="col-md-3">
-                            <label for="can_take_calls" class="form-label">Can take calls | eg : Yes/No</label>
+                            <label class="form-label">Can Take Calls</label>
                             {{ form.can_take_calls|add_class:"form-control" }}
                         </div>
                     </div>
+                </div>
 
-                    <div class="row g-3 mt-3">
+                <div class="form-section">
+                    <h2 class="section-title"><i class="fas fa-star form-icon"></i>Ratings</h2>
+                    <div class="row g-4">
                         <div class="col-md-4">
-                            <label for="power_sockets" class="form-label">Power Sockets | eg : 0 - 100</label>
-                            {{ form.power_sockets|add_class:"form-control" }}
+                            <label class="form-label">Seats Available</label>
+                            {{ form.seats|add_class:"form-control" }}
+                            <div class="help-text">Rate from 0 to 100</div>
                         </div>
                         <div class="col-md-4">
-                            <label for="quiet" class="form-label">Quiet Atmosphere | eg : 0 - 100</label>
-                            {{ form.quiet|add_class:"form-control" }}
+                            <label class="form-label">Coffee Price</label>
+                            {{ form.coffee_price|add_class:"form-control" }}
+                            <div class="help-text">Rate from 0 to 100</div>
                         </div>
                         <div class="col-md-4">
-                            <label for="calls" class="form-label">Video/Audio Calls | eg : 0 - 100</label>
-                            {{ form.calls|add_class:"form-control" }}
+                            <label class="form-label">Wifi Stability</label>
+                            {{ form.stable_wifi|add_class:"form-control" }}
+                            <div class="help-text">Rate from 0 to 100</div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="row g-3 mt-3">
+                <div class="form-section">
+                    <h2 class="section-title"><i class="fas fa-coffee form-icon"></i>Quality Ratings</h2>
+                    <div class="row g-4">
+                        <!-- Your existing quality rating fields with the new styling -->
                         <div class="col-md-4">
-                            <label for="tables" class="form-label">Group Tables | eg : 0 - 100</label>
-                            {{ form.tables|add_class:"form-control" }}
-                        </div>
-                        <div class="col-md-4">
-                            <label for="coffee" class="form-label">Coffee Quality | eg : 0 - 100</label>
+                            <label class="form-label">Coffee Quality</label>
                             {{ form.coffee|add_class:"form-control" }}
                         </div>
                         <div class="col-md-4">
-                            <label for="food" class="form-label">Food Quality | eg : 0 - 100</label>
+                            <label class="form-label">Food Quality</label>
                             {{ form.food|add_class:"form-control" }}
                         </div>
-                    </div>
-
-                    <div class="row g-3 mt-3">
                         <div class="col-md-4">
-                            <label for="veggie" class="form-label">Vegetarian Option | eg : 0 - 100</label>
+                            <label class="form-label">Vegetarian Options</label>
                             {{ form.veggie|add_class:"form-control" }}
                         </div>
-                        <div class="col-md-4">
-                            <label for="payment" class="form-label">Payment Options | eg : 0 - 100</label>
-                            {{ form.payment|add_class:"form-control" }}
-                        </div>
-                        <div class="col-md-4">
-                            <label for="restroom" class="form-label">Restroom | eg : 0 - 100</label>
-                            {{ form.restroom|add_class:"form-control" }}
-                        </div>
                     </div>
+                </div>
 
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn btn- btn-lg" style="background-color: rgb(244, 98, 58); color: white;">Submit</button>
+                <div class="form-section">
+                    <h2 class="section-title"><i class="fas fa-volume-up form-icon"></i>Atmosphere</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Quiet Level</label>
+                            {{ form.quiet|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Group Tables</label>
+                            {{ form.tables|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Call Friendly</label>
+                            {{ form.calls|add_class:"form-control" }}
+                        </div>
                     </div>
-                </form>
-        
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Café
+                </button>
+            </form>
         </div>
-      </div>
+    </div>
 
+      <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link, .cta-button').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.mobile-menu-btn').classList.remove('active');
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
                
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
