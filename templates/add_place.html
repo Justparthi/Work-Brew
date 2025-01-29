@@ -485,22 +485,22 @@ body {
                     <h2 class="section-title"><i class="fas fa-info-circle form-icon"></i>Basic Information</h2>
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <label class="form-label">Place Name</label>
+                            <label class="form-label" for="name">Place Name</label>
                             {{ form.name|add_class:"form-control" }}
                             <div class="help-text">Enter the official name of the café</div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Location</label>
+                            <label class="form-label" for="location">Location</label>
                             {{ form.location|add_class:"form-control" }}
                             <div class="help-text">Full address of the café</div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Map URL</label>
+                            <label class="form-label" for="map_url">Map URL</label>
                             {{ form.map_url|add_class:"form-control" }}
                             <div class="help-text">Google Maps or similar link</div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Image URL</label>
+                            <label for="img_url" class="form-label">Image URL</label>
                             {{ form.img_url|add_class:"form-control" }}
                             <div class="help-text">Link to a photo of the café</div>
                         </div>
@@ -511,19 +511,19 @@ body {
                     <h2 class="section-title"><i class="fas fa-wifi form-icon"></i>Amenities</h2>
                     <div class="row g-4">
                         <div class="col-md-3">
-                            <label class="form-label">Has Sockets</label>
+                            <label class="form-label" for="has_sockets">Has Sockets</label>
                             {{ form.has_sockets|add_class:"form-control" }}
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Has Toilet</label>
+                            <label class="form-label" for="has_toilet">Has Toilet</label>
                             {{ form.has_toilet|add_class:"form-control" }}
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Has Wifi</label>
+                            <label class="form-label" for="has_wifi">Has Wifi</label>
                             {{ form.has_wifi|add_class:"form-control" }}
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Can Take Calls</label>
+                            <label class="form-label" for="can_take_calls">Can Take Calls</label>
                             {{ form.can_take_calls|add_class:"form-control" }}
                         </div>
                     </div>
@@ -533,17 +533,17 @@ body {
                     <h2 class="section-title"><i class="fas fa-star form-icon"></i>Ratings</h2>
                     <div class="row g-4">
                         <div class="col-md-4">
-                            <label class="form-label">Seats Available</label>
+                            <label class="form-label" for="seats">Seats Available</label>
                             {{ form.seats|add_class:"form-control" }}
                             <div class="help-text">Rate from 0 to 100</div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Coffee Price</label>
+                            <label class="form-label" for="coffee_price">Coffee Price</label>
                             {{ form.coffee_price|add_class:"form-control" }}
                             <div class="help-text">Rate from 0 to 100</div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Wifi Stability</label>
+                            <label class="form-label" for="stable_wifi">Wifi Stability</label>
                             {{ form.stable_wifi|add_class:"form-control" }}
                             <div class="help-text">Rate from 0 to 100</div>
                         </div>
@@ -555,15 +555,15 @@ body {
                     <div class="row g-4">
                         <!-- Your existing quality rating fields with the new styling -->
                         <div class="col-md-4">
-                            <label class="form-label">Coffee Quality</label>
+                            <label class="form-label" for="coffee">Coffee Quality</label>
                             {{ form.coffee|add_class:"form-control" }}
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Food Quality</label>
+                            <label class="form-label" for="food">Food Quality</label>
                             {{ form.food|add_class:"form-control" }}
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Vegetarian Options</label>
+                            <label class="form-label" for="veggie">Vegetarian Options</label>
                             {{ form.veggie|add_class:"form-control" }}
                         </div>
                     </div>
@@ -573,15 +573,15 @@ body {
                     <h2 class="section-title"><i class="fas fa-volume-up form-icon"></i>Atmosphere</h2>
                     <div class="row g-4">
                         <div class="col-md-4">
-                            <label class="form-label">Quiet Level</label>
+                            <label class="form-label" for="quiet">Quiet Level</label>
                             {{ form.quiet|add_class:"form-control" }}
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Group Tables</label>
+                            <label class="form-label" for="tables">Group Tables</label>
                             {{ form.tables|add_class:"form-control" }}
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Call Friendly</label>
+                            <label class="form-label" for="calls">Call Friendly</label>
                             {{ form.calls|add_class:"form-control" }}
                         </div>
                     </div>
