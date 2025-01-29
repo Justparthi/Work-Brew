@@ -1,12 +1,14 @@
+{% load form_tags %}
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Places List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Add Place</title>
+    <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 * {
@@ -296,182 +298,159 @@ body {
         height: 160px;
     }
 }
-
-.hero-section {
-            padding: 4rem 0;
-            text-align: center;
-            background: linear-gradient(to right, rgba(42, 24, 16, 0.05), rgba(212, 165, 116, 0.05));
+.form-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        .hero-title {
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .form-title {
             font-family: var(--font-display);
-            font-size: var(--text-3xl);
+            font-size: var(--text-2xl);
             color: var(--primary);
             margin-bottom: 1rem;
         }
 
-        .hero-subtitle {
+        .form-subtitle {
             font-family: var(--font-body);
-            font-size: var(--text-lg);
+            font-size: var(--text-base);
             color: var(--text);
             max-width: 600px;
             margin: 0 auto;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(42, 24, 16, 0.05);
+            border: 1px solid rgba(212, 165, 116, 0.1);
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .form-label {
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            border: 2px solid rgba(42, 24, 16, 0.1);
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            font-size: var(--text-sm);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            font-size: var(--text-base);
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .form-icon {
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        .help-text {
+            font-size: var(--text-xs);
+            color: var(--text);
+            margin-top: 0.25rem;
             font-style: italic;
         }
 
-        .cafe-grid {
-            padding: 2rem 0;
-        }
-
-        .cafe-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 2rem;
-            position: relative;
-            border: none;
-        }
-
-        .cafe-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(42, 24, 16, 0.1);
-        }
-
-        .cafe-image {
-            height: 300px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cafe-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .cafe-card:hover .cafe-image img {
-            transform: scale(1.1);
-        }
-
-        .cafe-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 248, 243, 0.9);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: var(--text-xs);
-            color: var(--primary);
-            backdrop-filter: blur(5px);
-        }
-
-        .cafe-content {
-            padding: 2rem;
-        }
-
-        .cafe-title {
-            font-family: var(--font-display);
-            font-size: var(--text-xl);
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            text-decoration: none;
-        }
-
-        .cafe-title a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .cafe-title a:hover {
-            color: var(--accent);
-        }
-
-        .cafe-location {
-            font-size: var(--text-sm);
-            color: var(--text);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .cafe-hours {
-            font-size: var(--text-sm);
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .cafe-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(42, 24, 16, 0.1);
-        }
-
-        .location-btn {
-            background-color: var(--accent);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: var(--text-sm);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .location-btn:hover {
-            transform: translateY(-2px);
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .rating {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: var(--text-sm);
-            color: var(--primary);
-        }
-
-        .rating i {
-            color: #FFD700;
-        }
-
         @media (max-width: 768px) {
-            .hero-section {
-                padding: 2rem 0;
-            }
-
-            .cafe-image {
-                height: 250px;
-            }
-
-            .cafe-content {
+            .form-card {
                 padding: 1.5rem;
             }
 
-            .cafe-footer {
-                flex-direction: column;
-                gap: 1rem;
+            .form-section {
+                margin-bottom: 2rem;
             }
 
-            .location-btn {
-                width: 100%;
-                justify-content: center;
+            .section-title {
+                font-size: var(--text-base);
             }
         }
+
+        /* Progress indicator styles */
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            margin: 0 1rem;
+            color: var(--text);
+            font-size: var(--text-sm);
+        }
+
+        .step-number {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: var(--light);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .current-step .step-number {
+            background: var(--accent);
+            color: white;
+        }
+
     </style>
 </head>
-<body class="bg-light">
+<body>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
@@ -492,52 +471,130 @@ body {
             </div>
         </div>
     </nav>
-    <section class="hero-section">
-        <h1 class="hero-title">Discover Your Perfect Workspace</h1>
-        <p class="hero-subtitle">Find cozy cafés perfect for working, studying, or simply enjoying a great cup of coffee</p>
-    </section>
+    <div class="form-container">
+        <div class="form-header">
+            <h1 class="form-title">Share Your Favorite Workspace</h1>
+            <p class="form-subtitle">Help others discover great places to work by sharing your favorite café</p>
+        </div>
 
-    <!-- New Café Grid -->
-    <div class="container cafe-grid">
-        <div class="row">
-            {% for place in places %}
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="cafe-card">
-                    <div class="cafe-image">
-                        <img src="{{ place.img_url }}" alt="{{ place.name }}">
-                        <div class="cafe-badge">
-                            <i class="fas fa-wifi"></i> Free WiFi
+        <div class="form-card">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-section">
+                    <h2 class="section-title"><i class="fas fa-info-circle form-icon"></i>Basic Information</h2>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Place Name</label>
+                            {{ form.name|add_class:"form-control" }}
+                            <div class="help-text">Enter the official name of the café</div>
                         </div>
-                    </div>
-                    <div class="cafe-content">
-                        <h2 class="cafe-title">
-                            <a href="{% url 'place_detail' place.id %}">{{ place.name }}</a>
-                        </h2>
-                        <p class="cafe-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            {{ place.location }}
-                        </p>
-                        <p class="cafe-hours">
-                            <i class="far fa-clock"></i>
-                            7:00 - 8:00
-                        </p>
-                        <div class="cafe-footer">
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <span>4.5</span>
-                            </div>
-                            <a href="{{ place.map_url }}" class="location-btn">
-                                <i class="fas fa-map-marker-alt"></i>
-                                View Location
-                            </a>
+                        <div class="col-md-6">
+                            <label class="form-label">Location</label>
+                            {{ form.location|add_class:"form-control" }}
+                            <div class="help-text">Full address of the café</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Map URL</label>
+                            {{ form.map_url|add_class:"form-control" }}
+                            <div class="help-text">Google Maps or similar link</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Image URL</label>
+                            {{ form.img_url|add_class:"form-control" }}
+                            <div class="help-text">Link to a photo of the café</div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+
+                <div class="form-section">
+                    <h2 class="section-title"><i class="fas fa-wifi form-icon"></i>Amenities</h2>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <label class="form-label">Has Sockets</label>
+                            {{ form.has_sockets|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Has Toilet</label>
+                            {{ form.has_toilet|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Has Wifi</label>
+                            {{ form.has_wifi|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Can Take Calls</label>
+                            {{ form.can_take_calls|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title"><i class="fas fa-star form-icon"></i>Ratings</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Seats Available</label>
+                            {{ form.seats|add_class:"form-control" }}
+                            <div class="help-text">Rate from 0 to 100</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Coffee Price</label>
+                            {{ form.coffee_price|add_class:"form-control" }}
+                            <div class="help-text">Rate from 0 to 100</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Wifi Stability</label>
+                            {{ form.stable_wifi|add_class:"form-control" }}
+                            <div class="help-text">Rate from 0 to 100</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title"><i class="fas fa-coffee form-icon"></i>Quality Ratings</h2>
+                    <div class="row g-4">
+                        <!-- Your existing quality rating fields with the new styling -->
+                        <div class="col-md-4">
+                            <label class="form-label">Coffee Quality</label>
+                            {{ form.coffee|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Food Quality</label>
+                            {{ form.food|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Vegetarian Options</label>
+                            {{ form.veggie|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title"><i class="fas fa-volume-up form-icon"></i>Atmosphere</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Quiet Level</label>
+                            {{ form.quiet|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Group Tables</label>
+                            {{ form.tables|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Call Friendly</label>
+                            {{ form.calls|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Café
+                </button>
+            </form>
         </div>
     </div>
-    <script>
+
+      <script>
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             this.classList.toggle('active');
             document.querySelector('.nav-links').classList.toggle('active');
@@ -551,6 +608,7 @@ body {
             });
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+               
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
