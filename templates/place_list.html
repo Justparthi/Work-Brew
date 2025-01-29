@@ -7,54 +7,550 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        .card-img-top {
-            height: 200px;
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --primary: #2A1810;
+    --accent: #D4A574;
+    --light: #FFF8F3;
+    --text: #4A4A4A;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Lora', serif;
+    --text-xs: clamp(0.75rem, 1.5vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 2vw, 1rem);
+    --text-base: clamp(1rem, 2.5vw, 1.125rem);
+    --text-lg: clamp(1.25rem, 3vw, 1.5rem);
+    --text-xl: clamp(1.5rem, 4vw, 2rem);
+    --text-2xl: clamp(2rem, 5vw, 2.5rem);
+    --text-3xl: clamp(2.5rem, 6vw, 3rem);
+    --text-4xl: clamp(3rem, 8vw, 4rem);
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--text);
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background: rgba(255, 248, 243, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+}
+
+.nav-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    z-index: 1001;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--light);
+    transform: rotate(-10deg);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(0deg);
+}
+
+.logo-text {
+    font-weight: 700;
+    color: var(--primary);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+}
+
+.nav-links {
+    display: flex;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    font-size: var(--text-sm);
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--accent);
+}
+
+.cta-button {
+    background: var(--accent);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+    font-size: var(--text-sm);
+    white-space: nowrap;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    color: white;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 2px;
+    background: var(--primary);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.menu-icon::before {
+    top: -6px;
+}
+
+.menu-icon::after {
+    bottom: -6px;
+}
+
+.mobile-menu-btn.active .menu-icon {
+    background: transparent;
+}
+
+.mobile-menu-btn.active .menu-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.mobile-menu-btn.active .menu-icon::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+@media (max-width: 991px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        background: rgba(255, 248, 243, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-link {
+        font-size: var(--text-lg);
+    }
+
+    .cta-button {
+        margin-top: 1rem;
+    }
+}
+
+.card {
+    transition: transform 0.3s ease;
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    margin-bottom: 0.5rem;
+}
+
+.card-footer {
+    padding: 1rem 1.5rem;
+}
+
+.container {
+    padding-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-top: 1rem;
+    }
+    
+    h1 {
+        font-size: var(--text-2xl);
+        margin-bottom: 2rem;
+    }
+    
+    .card-img-top {
+        height: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-text {
+        font-size: var(--text-base);
+    }
+    
+    .logo-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+    
+    .card-img-top {
+        height: 160px;
+    }
+}
+
+.hero-section {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(to right, rgba(42, 24, 16, 0.05), rgba(212, 165, 116, 0.05));
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: var(--text-3xl);
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: var(--text-lg);
+            color: var(--text);
+            max-width: 600px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        .cafe-grid {
+            padding: 2rem 0;
+        }
+
+        .cafe-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+            position: relative;
+            border: none;
+        }
+
+        .cafe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(42, 24, 16, 0.1);
+        }
+
+        .cafe-image {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cafe-image img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .cafe-card:hover .cafe-image img {
+            transform: scale(1.1);
+        }
+
+        .cafe-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 248, 243, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: var(--text-xs);
+            color: var(--primary);
+            backdrop-filter: blur(5px);
+        }
+
+        .cafe-content {
+            padding: 2rem;
+        }
+
+        .cafe-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+        }
+
+        .cafe-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .cafe-title a:hover {
+            color: var(--accent);
+        }
+
+        .cafe-location {
+            font-size: var(--text-sm);
+            color: var(--text);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cafe-hours {
+            font-size: var(--text-sm);
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cafe-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(42, 24, 16, 0.1);
+        }
+
+        .location-btn {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: var(--text-sm);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .location-btn:hover {
+            transform: translateY(-2px);
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: var(--text-sm);
+            color: var(--primary);
+        }
+
+        .rating i {
+            color: #FFD700;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2rem 0;
+            }
+
+            .cafe-image {
+                height: 250px;
+            }
+
+            .cafe-content {
+                padding: 1.5rem;
+            }
+
+            .cafe-footer {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .location-btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body class="bg-light">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">☕</div>
+                <span class="logo-text">𝒲𝑜𝓇𝓀𝐵𝓇𝑒𝓌</span>
+            </a>
+            
+            <button class="mobile-menu-btn">
+                <div class="menu-icon"></div>
+            </button>
 
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="/cafe" class="nav-link">Discover</a>
+                <a href="#" class="nav-link">Reviews</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="/add" class="cta-button">Share a Café</a>
+            </div>
+        </div>
+    </nav>
+    <section class="hero-section">
+        <h1 class="hero-title">Discover Your Perfect Workspace</h1>
+        <p class="hero-subtitle">Find cozy cafés perfect for working, studying, or simply enjoying a great cup of coffee</p>
+    </section>
 
-  <div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">WorkBrew</span>
-      </a>
-
-      <ul class="nav nav-">
-        <li class="nav-item"><a href="/add" style="background-color: rgb(244, 98, 58); color: white; border-radius: 10px;" class="nav-link active" aria-current="page">Add Cafe</a></li>
-      </ul>
-    </header>
-  </div>
-  
-    <div class="container my-5">
-        <h1 class="text-center mb-5">Explore Places</h1>
-        
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <!-- New Café Grid -->
+    <div class="container cafe-grid">
+        <div class="row">
             {% for place in places %}
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="{{ place.img_url }}" class="card-img-top" alt="{{ place.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="{% url 'place_detail' place.id %}" class="text-decoration-none text-dark">{{ place.name }}</a>
-                        </h5>
-                        <p class="card-text">{{ place.location }}</p>
-                        <p class="card-text"><small class="text-muted"><i class="far fa-clock"></i> 7:00 - 8:00</small></p>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="cafe-card">
+                    <div class="cafe-image">
+                        <img src="{{ place.img_url }}" alt="{{ place.name }}">
+                        <div class="cafe-badge">
+                            <i class="fas fa-wifi"></i> Free WiFi
+                        </div>
                     </div>
-                    <div class="card-footer bg-transparent border-top-0">
-                        <a href="{{ place.map_url }}" class="btn btn-outline- btn-sm" style="background-color: rgb(244, 98, 58); color: white;">
-                            <i class="fas fa-map-marker-alt"></i> View Location
-                        </a>
+                    <div class="cafe-content">
+                        <h2 class="cafe-title">
+                            <a href="{% url 'place_detail' place.id %}">{{ place.name }}</a>
+                        </h2>
+                        <p class="cafe-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{ place.location }}
+                        </p>
+                        <p class="cafe-hours">
+                            <i class="far fa-clock"></i>
+                            7:00 - 8:00
+                        </p>
+                        <div class="cafe-footer">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.5</span>
+                            </div>
+                            <a href="{{ place.map_url }}" class="location-btn">
+                                <i class="fas fa-map-marker-alt"></i>
+                                View Location
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+    <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
 
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link, .cta-button').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.mobile-menu-btn').classList.remove('active');
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
