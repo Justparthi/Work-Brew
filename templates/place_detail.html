@@ -15,292 +15,177 @@
             --border-radius: 16px;
             --transition: all 0.3s ease;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Lora', serif;
             background-color: var(--light);
             color: var(--text);
             line-height: 1.6;
+            min-height: 100vh;
+            padding-top: 60px;
         }
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(255, 248, 243, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+        }
+        .nav-container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            z-index: 1001;
+        }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--light);
+            transform: rotate(-10deg);
+            transition: transform 0.3s ease;
+        }
+        .logo:hover .logo-icon {
+            transform: rotate(0deg);
+        }
+        .logo-text {
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+        .nav-links {
+            display: flex;
+            gap: clamp(1.5rem, 4vw, 3rem);
+            align-items: center;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: var(--accent);
+        }
+        .cta-button {
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+            white-space: nowrap;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        .menu-icon {
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            position: relative;
+            transition: var(--transition);
+        }
+        .menu-icon::before,
+        .menu-icon::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        .menu-icon::before { top: -6px; }
+        .menu-icon::after { bottom: -6px; }
 
-
-
-.navbar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    background: rgba(255, 248, 243, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 0.5rem 1rem;
-}
-
-.nav-container {
-    max-width: 1400px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    z-index: 1001;
-}
-
-.logo-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--accent);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--light);
-    transform: rotate(-10deg);
-    transition: transform 0.3s ease;
-}
-
-.logo:hover .logo-icon {
-    transform: rotate(0deg);
-}
-
-.logo-text {
-    font-weight: 700;
-    color: var(--primary);
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-}
-
-.nav-links {
-    display: flex;
-    gap: clamp(1.5rem, 4vw, 3rem);
-    align-items: center;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: var(--text);
-    font-weight: 500;
-    position: relative;
-    padding: 0.5rem 0;
-    font-size: var(--text-sm);
-    transition: color 0.3s ease;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
-}
-
-.nav-link.active {
-    color: var(--accent);
-}
-
-.cta-button {
-    background: var(--accent);
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: transform 0.3s ease;
-    font-size: var(--text-sm);
-    white-space: nowrap;
-}
-
-.cta-button:hover {
-    transform: translateY(-2px);
-    color: white;
-}
-
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1001;
-}
-
-.menu-icon {
-    width: 24px;
-    height: 2px;
-    background: var(--primary);
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.menu-icon::before,
-.menu-icon::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 2px;
-    background: var(--primary);
-    transition: all 0.3s ease;
-}
-
-.menu-icon::before {
-    top: -6px;
-}
-
-.menu-icon::after {
-    bottom: -6px;
-}
-
-.mobile-menu-btn.active .menu-icon {
-    background: transparent;
-}
-
-.mobile-menu-btn.active .menu-icon::before {
-    top: 0;
-    transform: rotate(45deg);
-}
-
-.mobile-menu-btn.active .menu-icon::after {
-    bottom: 0;
-    transform: rotate(-45deg);
-}
-
-@media (max-width: 991px) {
-    .mobile-menu-btn {
-        display: block;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 100%;
-        background: rgba(255, 248, 243, 0.98);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: right 0.3s ease;
-        padding: 2rem;
-        gap: 2rem;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-
-    .nav-link {
-        font-size: var(--text-lg);
-    }
-
-    .cta-button {
-        margin-top: 1rem;
-    }
-}
-
-.card {
-    transition: transform 0.3s ease;
-    border: none;
-    border-radius: 1rem;
-    overflow: hidden;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-
-.card-body {
-    padding: 1.5rem;
-}
-
-.card-title {
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-    margin-bottom: 0.5rem;
-}
-
-.card-footer {
-    padding: 1rem 1.5rem;
-}
-
-.container {
-    padding-top: 2rem;
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding-top: 1rem;
-    }
-    
-    h1 {
-        font-size: var(--text-2xl);
-        margin-bottom: 2rem;
-    }
-    
-    .card-img-top {
-        height: 180px;
-    }
-}
-
-@media (max-width: 576px) {
-    .logo-text {
-        font-size: var(--text-base);
-    }
-    
-    .logo-icon {
-        width: 32px;
-        height: 32px;
-        font-size: 1.2rem;
-    }
-    
-    .card-img-top {
-        height: 160px;
-    }
-}
-
-
+        .hero-image {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            margin-top: -60px;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+            display: flex;
+            align-items: flex-end;
+            padding: 5rem 0;
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 2rem;
+        }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: white;
+            margin-bottom: 1rem;
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
-            padding-top: 150px;
         }
-
         .cafe-info {
             background-color: white;
             border-radius: var(--border-radius);
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             overflow: hidden;
+            margin-top: 2rem;
         }
-
         .cafe-header {
             background-color: var(--primary);
             color: white;
@@ -308,18 +193,13 @@
             position: relative;
             overflow: hidden;
         }
-
         .cafe-header::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
             background: linear-gradient(45deg, var(--accent) 0%, transparent 100%);
             opacity: 0.1;
         }
-
         .cafe-title {
             font-family: 'Playfair Display', serif;
             font-size: clamp(1.5rem, 4vw, 2rem);
@@ -327,40 +207,28 @@
             position: relative;
             z-index: 1;
         }
-
-        .cafe-subtitle {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             padding: 2rem;
         }
-
         .info-card {
             background-color: var(--light);
             padding: 1.5rem;
             border-radius: 12px;
             transition: var(--transition);
         }
-
         .info-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.1);
         }
-
         .info-header {
             display: flex;
             align-items: center;
-            margin-bottom: 1rem;
             gap: 1rem;
+            margin-bottom: 1rem;
         }
-
         .icon-wrapper {
             width: 40px;
             height: 40px;
@@ -370,47 +238,10 @@
             align-items: center;
             justify-content: center;
         }
-
         .icon-wrapper i {
             color: white;
             font-size: 1.2rem;
         }
-
-        .info-title {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary);
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .info-content {
-            color: var(--text);
-            font-size: 1rem;
-        }
-
-        .contact-section {
-            background-color: var(--light);
-            padding: 2rem;
-            border-top: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .contact-item i {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
         .amenities-list {
             display: flex;
             flex-wrap: wrap;
@@ -418,7 +249,6 @@
             padding: 2rem;
             background-color: white;
         }
-
         .amenity-tag {
             background-color: var(--light);
             color: var(--primary);
@@ -430,40 +260,98 @@
             gap: 0.5rem;
             transition: var(--transition);
         }
-
         .amenity-tag:hover {
             background-color: var(--accent);
             color: white;
         }
+        .contact-section {
+            background-color: var(--light);
+            padding: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 991px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 100%;
+                background: rgba(255, 248, 243, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.3s ease;
+                padding: 2rem;
+                gap: 2rem;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+        }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
+            .container { padding: 1rem; }
+            .hero-image { height: 70vh; }
+            .info-grid,
             .contact-grid {
                 grid-template-columns: 1fr;
+            }
+            .amenities-list {
+                gap: 0.75rem;
+            }
+            .cafe-header {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-image {
+                height: 50vh;
+            }
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+            }
+            .amenity-tag {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
-
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
                 <div class="logo-icon">☕</div>
                 <span class="logo-text">𝒲𝑜𝓇𝓀𝐵𝓇𝑒𝓌</span>
             </a>
-            
             <button class="mobile-menu-btn">
                 <div class="menu-icon"></div>
             </button>
-
             <div class="nav-links">
                 <a href="#" class="nav-link active">Home</a>
                 <a href="/cafe" class="nav-link">Discover</a>
@@ -473,13 +361,23 @@
             </div>
         </div>
     </nav>
+
+    <header class="hero-image" style="background-image: url('{{ place.img_url }}');">
+        <div class="hero-overlay">
+            <div class="container hero-content">
+                <h1>{{ place.name }}</h1>
+                <p class="text-white lead">{{ place.location }}</p>
+            </div>
+        </div>
+    </header>
+
     <div class="container">
         <div class="cafe-info">
             <header class="cafe-header">
                 <h1 class="cafe-title">{{ place.name }}</h1>
                 <p class="cafe-subtitle">Work-Friendly Cafe in {{ place.location }}</p>
             </header>
-
+            
             <div class="info-grid">
                 <div class="info-card">
                     <div class="info-header">
@@ -493,7 +391,7 @@
                         <p>Weekend: 8:00 AM - 6:00 PM</p>
                     </div>
                 </div>
-
+                
                 <div class="info-card">
                     <div class="info-header">
                         <div class="icon-wrapper">
@@ -506,7 +404,7 @@
                         <p>Speed: {{ place.stable_wifi }}% Reliability</p>
                     </div>
                 </div>
-
+                
                 <div class="info-card">
                     <div class="info-header">
                         <div class="icon-wrapper">
@@ -519,7 +417,7 @@
                         <p>Multiple seating options available</p>
                     </div>
                 </div>
-
+                
                 <div class="info-card">
                     <div class="info-header">
                         <div class="icon-wrapper">
